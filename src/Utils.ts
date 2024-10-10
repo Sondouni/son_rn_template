@@ -1,5 +1,6 @@
 import { Dimensions } from "react-native";
 import { ClipOp, createPicture, rect, Skia, SkImage, SkPicture } from "@shopify/react-native-skia";
+import moment from "moment";
 
 
 export const DEFAULT_BACKGROUND_COLOR = "#FFFFFF";
@@ -281,4 +282,24 @@ export const makePicture = (x,y,image: SkImage, density: number, size: number, s
 
 
   });
+}
+
+
+export const parseServerTime = (time) => {
+  const tempStrArr = time.split('.');
+  console.log(tempStrArr);
+  const year = tempStrArr[0].substring(0,4);
+  const month = tempStrArr[0].substring(4,6);
+  const day = tempStrArr[0].substring(6,8);
+  console.log(`${year} ${month} ${day}`);
+
+  const hour = tempStrArr[1].substring(0,2);
+  const min = tempStrArr[1].substring(2,4);
+  const second = tempStrArr[1].substring(4,6);
+
+  const millisec = tempStrArr[2];
+
+  const parseDate = new Date(`${year}-${month}-${day} ${hour}:${min}:${second}.${millisec}`);
+  // console.log(parseDate,parseDate.getTime());
+  return parseDate;
 }

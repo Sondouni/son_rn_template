@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
-import { memo, useContext } from "react";
+import { memo, useContext, useEffect } from "react";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -9,13 +9,33 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import BasicText from "../../../component/React-component/BasicText";
 import Container from "../../../component/React-component/Container";
 import { SyncedScrollViewContext } from "../../../context/SyncedScrollViewContext";
+import { SetupService } from "../../../../trackPlayer/SetupService";
+import TrackPlayer from "react-native-track-player";
 
 export interface Props {
   navigation: any;
 }
 
+const tempTrack = {
+  // url: require('./tempMusic.mp4'), // Load media from the app bundle
+  url: 'https://image.flydesk.co.kr/orange-play/festival/tempMusic.mp4', // Load media from the app bundle
+  title: 'BUSAN',
+  artist: 'Codeguts',
+  artwork: 'https://image.flydesk.co.kr/orange-play/festival/djeans.jpeg', // Load artwork from the app bundle
+  duration: 166
+};
+
 function TemplateScreen({ navigation }: any) {
 
+  useEffect(()=>{
+    (async () => {
+
+      // await TrackPlayer.play();
+      // await TrackPlayer.pause();
+      // await TrackPlayer.seekTo(playTime);
+      // await TrackPlayer.play();
+    })();
+  },[]);
 
   return (
     <Container>
@@ -473,8 +493,38 @@ function TemplateScreen({ navigation }: any) {
                     SSO Login
                   </BasicText>
                 </TouchableOpacity>
-
               </View>
+
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('SoundPlay');
+                }}
+              >
+                <View
+                  style={{
+                    alignItems:'center',
+                    paddingHorizontal:20,
+                  }}
+                >
+
+                  <View
+                    style={{
+                      alignItems:'center',
+                      paddingVertical:20
+                    }}
+                  >
+                    <MaterialIcons name="play-circle" color={'black'} size={40} />
+                  </View>
+                  <BasicText
+                    style={{
+                      fontSize:13,
+                      fontWeight:'500'
+                    }}
+                  >
+                    Sound Play
+                  </BasicText>
+                </View>
+              </TouchableOpacity>
             </ScrollView>
           </View>
 

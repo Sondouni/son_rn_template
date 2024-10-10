@@ -44,7 +44,7 @@ function DailyWidgetScreen({ navigation }: any) {
   const minHandleX = useSharedValue(75);
   const minHandleY = useSharedValue(75);
   const clockAngle = useSharedValue(210);
-  const clockHourAngle = useSharedValue(210);
+  const clockHourAngle = useSharedValue(240);
 
 
 
@@ -222,44 +222,6 @@ function DailyWidgetScreen({ navigation }: any) {
 
   const tempPoints = [];
 
-  // return [{ rotate: degreesToRadians(curScrollIdx.value * 6) }];
-  const secondsRotation = useDerivedValue(() => {
-    'worklet'
-    // for(let i = 0; i <dailyRoutine.length; i++) {
-    //   if(i === curScrollIdx.value){
-    //     const minAngle = dailyRoutine[i].min * 0.5;
-    //     const minSin = Math.sin(minAngle * Math.PI / 180);
-    //     const minCos = Math.cos(minAngle * Math.PI / 180);
-    //
-    //     // minHandleX.value = minCos * 25
-    //     // minHandleY.value = minSin * 25
-    //
-    //   }
-    // }
-    // dailyRoutine.forEach((item,index)=>{
-    //   if(index === curScrollIdx.value){
-    //     const minAngle = item.min * 0.5;
-    //     const minSin = Math.sin(minAngle * Math.PI / 180);
-    //     const minCos = Math.cos(minAngle * Math.PI / 180);
-    //
-    //     // minHandleX.value = minCos * 25
-    //     // minHandleY.value = minSin * 25
-    //
-    //   }
-    // })
-    // console.log(dailyRoutineList,'dailyRoutine')
-    // console.log(curScrollIdx.value,'dailyRoutine')
-    const minAngle = dailyRoutineList.current[curScrollIdx.value] * 6 -90;
-    // console.log()
-    // console.log(minAngle,dailyRoutineList.current[curScrollIdx.value]);
-    const minSin = Math.sin(minAngle * (Math.PI / 180));
-    const minCos = Math.cos(minAngle * (Math.PI / 180));
-    //
-    // console.log(minCos * 35 + R,minSin * 35 + R)
-    minHandleX.value = withTiming(minCos * 35 +R,{duration:100});
-    minHandleY.value = withTiming(minSin * 35 +R,{duration:100});
-  }, [curScrollIdx]);
-
 
   return (
     <View
@@ -316,6 +278,7 @@ function DailyWidgetScreen({ navigation }: any) {
                   {/*R = 75 -> 원 센터 좌표*/}
                 <Drawing
                   drawing={({canvas})=>{
+                    console.log('???????asd')
                     const paint = Skia.Paint();
                     paint.setStrokeWidth(4);
                     paint.setStrokeCap(StrokeCap.Round);
@@ -448,7 +411,7 @@ function DailyWidgetScreen({ navigation }: any) {
                 }}
                 onProgressChange={(offsetProgress,absoluteProgress)=>{
                   // console.log(absoluteProgress,'top absoluteProgress')
-                  console.log(absoluteProgress);
+                  // console.log(absoluteProgress);
                   const curIdx = Math.ceil(absoluteProgress)==10?0:Math.ceil(absoluteProgress);
 
                   if(curScrollIdx.value!==curIdx){
@@ -456,7 +419,7 @@ function DailyWidgetScreen({ navigation }: any) {
                     clockHourAngle.value = withTiming(dailyRoutine[curIdx].hour * 30,{duration:500})
                     // console.log('??');
                     // console.log(curScrollIdx.value)
-                    console.log(dailyRoutine[curIdx].time,curIdx,dailyRoutineList.current[curIdx]);
+                    // console.log(dailyRoutine[curIdx].time,curIdx,dailyRoutineList.current[curIdx]);
                     curScrollIdx.value = curIdx;
                     // curScrollIdx.value = withTiming(curIdx*10,{duration:500});
                   }

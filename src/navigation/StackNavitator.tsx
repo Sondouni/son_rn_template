@@ -15,6 +15,7 @@ import SkiaTutorial4Screen from "../screens/Animation/SkiaTutorial4Screen/SkiaTu
 import SmartACScreen from "../screens/Example/SmartACScreen/SmartACScreen";
 import DailyWidgetScreen from "../screens/Example/DailyWidgetScreen/DailyWidgetScreen";
 import InfinityLoopScreen from "../screens/Scrollview/InfinityLoopScreen/InfinityLoopScreen";
+import SoundPlayScreen from "../screens/ETC/SoundPlayScreen/SoundPlayScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -131,14 +132,14 @@ export const StackNavigator = () => {
         }}
       />
 
-      {/*<Stack.Screen*/}
-      {/*  name={"SharedStackScreen"}*/}
-      {/*  component={SharedStackScreen}*/}
-      {/*  options={{*/}
-      {/*    animation:'fade',*/}
-      {/*    headerShown:false*/}
-      {/*  }}*/}
-      {/*/>*/}
+      <Stack.Screen
+        name={"SoundPlay"}
+        component={SoundPlayScreen}
+        options={{
+          // animation:'fade',
+          headerShown:false
+        }}
+      />
 
     </Stack.Navigator>
   );

@@ -30,8 +30,9 @@ import { StackNavigator } from "./navigation/StackNavitator";
 import { RecoilRoot } from "recoil";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { FpsCounter } from "./screens/FpsCounter";
+import { Federated } from "@callstack/repack/client";
 
-
+const App1 = React.lazy(() => Federated.importModule('app1', './App'));
 
 function App(): JSX.Element {
   LogBox.ignoreAllLogs(true);
@@ -53,6 +54,12 @@ function App(): JSX.Element {
         </NavigationContainer>
       </RecoilRoot>
     </GestureHandlerRootView>
+    // <SafeAreaView>
+    //   <Text>Host App</Text>
+    //   <React.Suspense fallback={<Text>Loading app1...</Text>}>
+    //     <App1 />
+    //   </React.Suspense>
+    // </SafeAreaView>
   );
 }
 
